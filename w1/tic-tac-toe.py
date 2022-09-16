@@ -2,12 +2,14 @@
 # Easterling Carpenter
 
 def main():
-    table = [ '1', '2', '3' , '4' , '5', '6', '7', '8', '9' ]
+    table = [ 1, 2, 3 , 4 , 5, 6, 7, 8, 9 ]
     x_turn = True
-    while(check_win(table)):
+    play_count = 0
+    while(check_win(table, play_count)):
         disp_table(table)
         prompt_turn(table, x_turn)
         x_turn = not x_turn
+        play_count+= 1
 
 def disp_table(t):
     print(t[0], t[1], t[2], sep='|')
@@ -18,15 +20,32 @@ def disp_table(t):
     print()
 
 def prompt_turn(t, x):
-    if(x):
-        player = 'x'
-    elif(not x):
-        player = 'o'
-    placement = int(input(f'{player}\'s turn to choose a square (1-9): '))
-    t[placement-1] = player
+    playable = True
+    while(playable):
+        if(x):
+            player = 'x'
+        elif(not x):
+            player = 'o'
+        placement = int(input(f'{player}\'s turn to choose a square (1-9): '))
+        playable = can_place(t[placement-1])
+        if(playable):
+            t[placement-1] = player
+            print()
+            return
+        else:
+            disp_table(t)
+            playable = True
     print()
 
-def check_win(t):
+def can_place(ti):
+    if ti == 'x' or ti == 'o':
+        print('That place is already taken, please try again.\n')
+        can_play = False
+    else:
+        can_play = True
+    return can_play
+
+def check_win(t, c):
     next_turn = True
     WIN_CONDS = [ t[0] == t[1] and t[0] == t[2], \
                   t[3] == t[4] and t[3] == t[5], \
@@ -41,7 +60,11 @@ def check_win(t):
         next_turn = False
         disp_table(t)
         print('Good game. Thanks for playing!')
-    return next_turn
+    elif(c == 9):
+        print('Game Over')
+        next_turn = False
+    else:
+        return next_turn
 
 if __name__ == '__main__':
     main()
