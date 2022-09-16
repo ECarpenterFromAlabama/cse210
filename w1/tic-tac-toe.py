@@ -12,6 +12,17 @@ def main():
         play_count+= 1
 
 def disp_table(t):
+    """Displays the current tic-tac-toe table in the following format:
+        1|2|3 \n
+        -+-+- \n
+        4|5|6 \n
+        -+-+- \n
+        7|8|9
+    Where any integer may replaced by and 'x' or an 'o'
+    Parameters
+        t: a list of elements in the current tic-tac-toe table
+    Return: Nothing
+    """                         
     print(t[0], t[1], t[2], sep='|')
     print('-+-+-')
     print(t[3], t[4], t[5], sep='|')
@@ -20,6 +31,15 @@ def disp_table(t):
     print()
 
 def prompt_turn(t, x):
+    """Prompts the current player to take their turn by
+    asking for a position(1-9) on the grid. It can catch errors
+    where the input value is not an integer of 1 through 9.
+    Utilizes can_place() to check to se if the space is taken.
+    Parameters
+        t: a list of elements in the current tic-tac-toe table
+        x: boolean asking if it is x's turn or not
+    Return: Nothing
+    """
     playable = True
     while(playable):
         if(x):
@@ -45,6 +65,14 @@ def prompt_turn(t, x):
     print()
 
 def can_place(ti):
+    """Determines whether or not a space on the grid
+    is already occupied by a player.
+    Parameters
+        ti: the item in the list that corresponds to the player's
+            selection
+    Return: can_play: Boolean indicating if that spot on the grid
+                      is playable
+    """
     if ti == 'x' or ti == 'o':
         print('That place is already taken, please try again.\n')
         can_play = False
@@ -53,6 +81,14 @@ def can_place(ti):
     return can_play
 
 def check_win(t, c):
+    """Checks to see if a player has won or if
+    the game can no longer continue due to the grid
+    being full.
+    Parameters
+        t: a list of elements in the current tic-tac-toe table
+        c: count of how many turns have passed.
+    Return: next_turn: Boolean determining if the game continues.
+    """
     next_turn = True
     WIN_CONDS = [ t[0] == t[1] and t[0] == t[2], \
                   t[3] == t[4] and t[3] == t[5], \
