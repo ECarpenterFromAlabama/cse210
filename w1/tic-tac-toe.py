@@ -26,13 +26,20 @@ def prompt_turn(t, x):
             player = 'x'
         elif(not x):
             player = 'o'
-        placement = int(input(f'{player}\'s turn to choose a square (1-9): '))
-        playable = can_place(t[placement-1])
-        if(playable):
+        while(True):
+            try:
+                placement = int(input(f'{player}\'s turn to choose a square (1-9): '))
+                playable = can_place(t[placement-1])
+                break
+            except ValueError:
+                print('Please enter a valid number 1-9')
+                print()
+        if(playable and placement <=9 and placement >= 1 ):
             t[placement-1] = player
             print()
             return
         else:
+            print('Please make sure the number is between 1 and 9 and the space is not currently taken.')
             disp_table(t)
             playable = True
     print()
