@@ -9,10 +9,11 @@ class Director:
     The responsibility of a Director is to control the sequence of play.
 
     Attributes:
-        hider (Hider): The game's hider.
+        jumper (Jumper): The jumper character with parachute.
         is_playing (boolean): Whether or not to keep playing.
-        seeker (Seeker): The game's seeker.
+        puzzle (Puzzle): The word puzzle to be solved.
         terminal_service: For getting and displaying information on the terminal.
+        correct (boolean): Whether the player's current guess is correct or not.
     """
 
     def __init__(self):
@@ -43,7 +44,8 @@ class Director:
             self._do_outputs()
 
     def _get_inputs(self):
-        """Moves the seeker to a new location.
+        """Asks player for letter guess. Checks to
+        see if it is correct.
 
         Args:
             self (Director): An instance of Director.
@@ -58,7 +60,9 @@ class Director:
                 print(f"{letter_guess} is not a letter. Try again.")
         
     def _do_updates(self):
-        """Keeps watch on where the seeker is moving.
+        """Checks to make sure the letter exists in the answer
+        and updates the parachute accordingly. Also determines
+        if the game is over.
 
         Args:
             self (Director): An instance of Director.
@@ -75,7 +79,8 @@ class Director:
             self._is_playing = False
         
     def _do_outputs(self):
-        """Provides a hint for the seeker to use.
+        """Shows the correctly guessed letters in the
+        word. Also draws the parachute.
 
         Args:
             self (Director): An instance of Director.
