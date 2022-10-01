@@ -6,7 +6,7 @@ class Puzzle:
 
     def __init__(self):
         self._word_list = []
-        self._word_selected = ''
+        self.__word_selected = ''
         self.word_guess = []
 
 
@@ -21,7 +21,7 @@ class Puzzle:
 
     def _pick_word(self):
         rand_word = random.choice(self._word_list)
-        self.word_selected = rand_word
+        self._word_selected = rand_word
         for i in range(len(rand_word)):
             self.word_guess.append("_ ")
 
@@ -34,7 +34,7 @@ class Puzzle:
         pos = 0
         correct_answer = False
         while(more_letters):
-            letter_pos = self.word_selected.find(guess_letter, pos)
+            letter_pos = self._word_selected.find(guess_letter, pos)
             if(letter_pos != -1):
                 self.word_guess[letter_pos] = guess_letter
                 pos += 1

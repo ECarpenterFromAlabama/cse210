@@ -71,7 +71,7 @@ class Director:
             print("Congratulations! You won!")
             self._is_playing = False
         elif(len(self.jumper.parachute) == 0):
-            print(f"Game Over!\nThe word was {self._puzzle.word_selected}")
+            print(f"Game Over!\nThe word was {self._puzzle._word_selected}")
             self._is_playing = False
         
     def _do_outputs(self):
