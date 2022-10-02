@@ -38,6 +38,7 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        self._do_outputs()
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
