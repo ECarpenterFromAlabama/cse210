@@ -62,7 +62,6 @@ class Director:
             if robot.get_position().equals(artifact.get_position()):
                 cast.remove_actor("artifacts", artifact)
                 self._total_score += artifact.get_points()
-                # message = artifact.get_message()
                 
         banner.set_text("Score = " +str(self._total_score))    
         

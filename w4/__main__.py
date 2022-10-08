@@ -22,7 +22,6 @@ FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
 
@@ -37,20 +36,11 @@ def main():
     banner.set_text("")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, CELL_SIZE*2))
+    banner.set_position(Point(CELL_SIZE, CELL_SIZE-1))
     cast.add_actor("banners", banner)
 
-    #create High Score
-    high_score = Actor()
-    high_score.set_text("")
-    high_score.set_font_size(FONT_SIZE)
-    high_score.set_color(WHITE)
-    high_score.set_position(Point(CELL_SIZE, CELL_SIZE))
-    cast.add_actor("banners", high_score)
-    
     # create the robot
     x = int(MAX_X / 2)
-    # y = int(MAX_Y / 2)
     position = Point(x, MAX_Y - CELL_SIZE)
 
     robot = Actor()
@@ -60,14 +50,8 @@ def main():
     robot.set_position(position)
     cast.add_actor("robots", robot)
     
-    # create the artifacts
-    # with open(DATA_PATH) as file:
-        # data = file.read()
-        # messages = data.splitlines()
-
     for n in range(DEFAULT_ARTIFACTS):
         text = random.choice(["*", "O"])
-        # message = messages[n]
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 20)
@@ -85,7 +69,6 @@ def main():
         artifact.set_color(color)
         artifact.set_position(position)
         artifact.set_velocity(Point(0, 1))
-        # artifact.set_message(message)
         cast.add_actor("artifacts", artifact)
     
     # start the game
