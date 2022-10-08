@@ -14,9 +14,3 @@ class Artifact(Actor):
             self._points = -1
 
         return self._points
-
-    # def set_message(self, message):
-        # self.message = message
-# 
-    # def get_message(self):
-        # return self.message
