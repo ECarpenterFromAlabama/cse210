@@ -34,11 +34,19 @@ def main():
     
     # create the banner
     banner = Actor()
-    banner.set_text("Score: ")
+    banner.set_text("")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
+    banner.set_position(Point(CELL_SIZE, CELL_SIZE*2))
     cast.add_actor("banners", banner)
+
+    #create High Score
+    high_score = Actor()
+    high_score.set_text("")
+    high_score.set_font_size(FONT_SIZE)
+    high_score.set_color(WHITE)
+    high_score.set_position(Point(CELL_SIZE, CELL_SIZE))
+    cast.add_actor("banners", high_score)
     
     # create the robot
     x = int(MAX_X / 2)
@@ -62,7 +70,7 @@ def main():
         # message = messages[n]
 
         x = random.randint(1, COLS - 1)
-        y = random.randint(1, 1)
+        y = random.randint(1, ROWS - 20)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
